@@ -16,8 +16,9 @@ package main
 
 import (
 	"fmt"
-	"id3"
 	"os"
+
+	"github.com/dustin/go-id3"
 )
 
 func main() {
@@ -37,7 +38,7 @@ func main() {
 			fmt.Fprintf(os.Stderr, "Could not read ID3 information from %s\n", s)
 		} else {
 			fmt.Println(s)
-			fmt.Printf("Header\t%s\n", file.Header)
+			fmt.Printf("Header\t%#v\n", file.Header)
 			fmt.Printf("Name\t%s\n", file.Name)
 			fmt.Printf("Artist\t%s\n", file.Artist)
 			fmt.Printf("Album\t%s\n", file.Album)

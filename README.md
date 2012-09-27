@@ -30,5 +30,5 @@ Examples
 --------
 An example tag reading program can be found under id3/tagreader.
 
-    go install id3/tagreader
+    go install github.com/dustin/id3/tagreader
     $GOPATH/bin/tagreader path/to/file.mp3 [...]

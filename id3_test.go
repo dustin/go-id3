@@ -27,7 +27,7 @@ type fileTest struct {
 }
 
 func testFile(t *testing.T, expected fileTest) {
-	p := path.Join("..", "..", "test", expected.path)
+	p := path.Join("test", expected.path)
 	t.Logf("With file %s", p)
 
 	fd, err := os.Open(p)
