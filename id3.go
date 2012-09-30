@@ -53,11 +53,17 @@ type File struct {
 
 // Parse the input for ID3 information. Returns nil if parsing failed or the
 // input didn't contain ID3 information.
-func Read(reader io.Reader) *File {
-	file := new(File)
+func Read(reader io.Reader) (file *File) {
+	defer func() {
+		if r := recover(); r != nil {
+			file = nil
+		}
+
+	}()
+	file = new(File)
 	bufReader := bufio.NewReader(reader)
 	if !isID3Tag(bufReader) {
-		return nil
+		return
 	}
 
 	parseID3v2Header(bufReader, file)
@@ -72,7 +78,7 @@ func Read(reader io.Reader) *File {
 		panic(fmt.Sprintf("Unrecognized ID3v2 version: %d", file.Header.Version))
 	}
 
-	return file
+	return
 }
 
 func isID3Tag(reader *bufio.Reader) bool {
