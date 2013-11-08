@@ -96,9 +96,9 @@ func testFile(t *testing.T, expected fileTest) {
 }
 
 func TestEmpty(t *testing.T) {
-	file := Read(new(bytes.Buffer))
-	if file != nil {
-		t.Fail()
+	file := Read(&bytes.Buffer{})
+	if file == nil {
+		t.Errorf("Expected a result, but got nil")
 	}
 }
 
